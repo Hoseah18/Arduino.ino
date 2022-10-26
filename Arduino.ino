@@ -33,8 +33,7 @@ char server[] = "172.16.4.123"; // local IP address
 IPAddress ip(172,16,4,123); 
 WiFiClient client; 
 
-LiquidCrystal_I2C lcd(0x3F,16,2);  // set the LCD address to 0x3F for a 16 chars and 2 line display
- 
+LiquidCrystal_I2C lcd(0x3F,16,2);  
 
 const char* ssid = "Free_Wife";
 const char* password = "Hoseah18#";
