@@ -9,6 +9,7 @@
 #include <WiFiMulti.h>
 #include <WiFiClient.h>
 #include <HTTPClient.h>
+
 #define LED_PIN   15 // ESP32 pin GIOP15 connected to LED's pin
 #define SOUND_SPEED 0.034
 #define DISTANCE_THRESHOLD 50 // centimeters
@@ -16,9 +17,8 @@
 #define COUNT_HIGH 8888
 #define TIMER_WIDTH 16
 
-// our tank height is 200cm
+// let our tank height is 200cm
 
-// The below are variables, which can be changed
 
 const int trigPin = 5;
 const int echoPin = 18;
@@ -33,10 +33,11 @@ char server[] = "172.16.4.123"; // local IP address
 IPAddress ip(172,16,4,123); 
 WiFiClient client; 
 
-LiquidCrystal_I2C lcd(0x3F,16,2);  
+LiquidCrystal_I2C lcd(0x3F,16,2);  // set the LCD address to 0x3F for a 16 chars and 2 line display
+ 
 
-const char* ssid = "Free_Wife";
-const char* password = "Hoseah18#";
+const char* ssid = "Fabrice";
+const char* password = "12345678900";
 
 //int SERVO_PIN = 13;
 //Servo servo;
@@ -52,7 +53,7 @@ void setup() {
   lcd.init();  //initialize the LCD
   lcd.clear(); 
    
-  //Print a message to the LCD
+  //Print a message to the LCD as display
   lcd.backlight();
   //lcd.clear();
   lcd.setCursor(0,0);
@@ -61,10 +62,10 @@ void setup() {
   lcd.print("Water level");
   delay(500);
    
-  //servo.attach(SERVO_PIN);   // attaches the servo on pin 9 to the servo object
+  //servo.attach(SERVO_PIN);   // attaches the servo on pin 9 to the servo 
   //servo.write(angle);
 
- wifiMulti.addAP("Free_Wife", "12345678900");
+ wifiMulti.addAP("Fabrice", "12345678900");
 }
 
 void loop() {
@@ -128,27 +129,16 @@ void loop() {
     client.print("GET /water_level/insert.php?tank_level=");     //YOUR URL
     Serial.println(tank_level);
     client.print(tank_level);
-   // client.print("&temperature=");
-    //Serial.println("&temperature=");
-    //client.print(temperature );
-    //Serial.println(temperature );
-   
-   //client.print("&groupName=Kanla");
-
-   //Serial.print("GET /water_level/insert.php?id=1&tank_location=fabrice");
-   //client.print("GET /water_level/insert.php?id=1&tank_location=fabrice");
-   
-    //Serial.println("&groupname=Kanla");
-   // client.print(temperatureData);
-    //Serial.println(temperatureData);
     client.print(" ");      //SPACE BEFORE HTTP/1.1
     client.print("HTTP/1.1");
     client.println();
     client.println("Host:172.16.4.123");
     client.println("Connection: close");
     client.println();
-  } else {
-    // if you didn't get a connection to the server:
+  } 
+  
+  else {
+    // if connection is not connected to the server there
     Serial.println("connection failed");
   }
  }else {
