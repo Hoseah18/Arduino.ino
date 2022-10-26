@@ -1,0 +1,11 @@
+#include <Wire.h>
+#include <LiquidCrystal_I2C.h>
+#include <WiFi.h>
+#include "esp32-hal-ledc.h"
+#include <WebServer.h>
+#include <ESPmDNS.h>
+#include <SPI.h>
+#include <Ethernet.h>
+#include <WiFiMulti.h>
+#include <WiFiClient.h>
+#include <HTTPClient.h>
